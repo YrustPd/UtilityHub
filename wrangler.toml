@@ -1,0 +1,38 @@
+name = "utilityhub"
+main = "src/index.js"
+compatibility_date = "2024-09-01"
+
+# Static assets for icons and /assets/*
+assets = { directory = "./assets", binding = "ASSETS" }
+
+# Optional KV namespace for rate limiting
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT_KV"
+# id = "your-kv-id"
+# preview_id = "your-kv-preview-id"
+
+# Optional Durable Object rate limiter
+# [[durable_objects]]
+# binding = "RATE_LIMIT_DO"
+# class_name = "RateLimiterDO"
+# script_name = "utilityhub"
+
+# Default environment variables
+[vars]
+HUB_NAME = "UtilityHub"
+HUB_TAGLINE = "Minimal edge utilities"
+HUB_VERSION = "1.0.0"
+HUB_PREFIX = "/"
+RATE_LIMIT_ENABLED = "false"
+RATE_LIMIT_WINDOW_SEC = "60"
+RATE_LIMIT_MAX = "60"
+RATE_LIMIT_MAX_CRYPTO = "20"
+LOGGING_ENABLED = "false"
+
+[env.production]
+# Root mode (serve at /)
+vars = { HUB_PREFIX = "/" }
+
+[env.prefix]
+# Prefix mode (serve under /hub by default)
+vars = { HUB_PREFIX = "/hub" }
